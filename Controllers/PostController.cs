@@ -5,28 +5,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using TaskTrackerBackend.Models.DTO;
+using TaskTrackerBackend.Services;
 
 namespace TaskTrackerBackend.Controllers
 {
-    [Route("[controller]")]
-    public class PostController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class PostController : ControllerBase
     {
-        private readonly ILogger<PostController> _logger;
-
-        public PostController(ILogger<PostController> logger)
+        private readonly PostService _posts;
+        public PostController(PostService posts)
         {
-            _logger = logger;
+            _posts = posts;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View("Error!");
+        [HttpPost]
+        [Route("CreatePost/{username}")]
+        public bool CreatePost(string username, CreatePostDTO createdPost){
+            return _posts.CreatePost(username, createdPost);
         }
     }
 }

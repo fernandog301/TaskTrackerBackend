@@ -3921,19 +3921,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Fernando Gutierrez\\.nuget\\packages\\": {}
+    "C:\\Users\\jaykh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Fernando Gutierrez\\CodeStack\\Week9\\TaskTrackerBackend\\TaskTrackerBackend.csproj",
+      "projectUniqueName": "C:\\Users\\jaykh\\OneDrive\\Desktop\\CodeStack Academy\\Git repo\\TaskTrackerBackend\\TaskTrackerBackend.csproj",
       "projectName": "TaskTrackerBackend",
-      "projectPath": "C:\\Users\\Fernando Gutierrez\\CodeStack\\Week9\\TaskTrackerBackend\\TaskTrackerBackend.csproj",
-      "packagesPath": "C:\\Users\\Fernando Gutierrez\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Fernando Gutierrez\\CodeStack\\Week9\\TaskTrackerBackend\\obj\\",
+      "projectPath": "C:\\Users\\jaykh\\OneDrive\\Desktop\\CodeStack Academy\\Git repo\\TaskTrackerBackend\\TaskTrackerBackend.csproj",
+      "packagesPath": "C:\\Users\\jaykh\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jaykh\\OneDrive\\Desktop\\CodeStack Academy\\Git repo\\TaskTrackerBackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Fernando Gutierrez\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\jaykh\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -4005,7 +4005,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.408\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
