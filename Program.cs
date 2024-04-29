@@ -1,8 +1,30 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using TaskTrackerBackend.Services;
+using TaskTrackerBackend.Services.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<PasswordService>();
+builder.Services.AddScoped<PostService>();
+builder.Services.AddScoped<AppService>();
+
+var ConnectionString = builder.Configuration.GetConnectionString("TaskTracker");
+builder.Services.AddDbContext<DataContext>(Options => Options.UseSqlServer(ConnectionString));
+
+builder.Services.AddCors(options => options.AddPolicy("TaskTracker",
+ builder => {
+    builder.WithOrigins("http://localhost:5217", "http://localhost:3000", "http://localhost:3001", "")
+    .AllowAnyHeader()
+    .AllowAnyMethod();
+ }
+));
+
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -16,7 +38,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors("TaskTrackerPolicy");
 
 app.UseAuthorization();
 
