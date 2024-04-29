@@ -11,10 +11,14 @@ namespace TaskTrackerBackend.Models
 
         public string Username { get; set; }
 
+<<<<<<< HEAD
         public string AccountCreated { get; set; }
 
         
         public string Password { get; set; }
+=======
+        
+>>>>>>> 68671510b6e5dca6dced2185bfea9b2c9df64832
         
         public string? Salt { get; set; }
 
