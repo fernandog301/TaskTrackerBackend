@@ -8,8 +8,10 @@ namespace TaskTrackerBackend.Models
     public class AppModels
     {
 
-        public string? ProfilePic { get; set; } = null;
+        public string? ProfilePic { get; set; }
 
-        public string? ProfilePicUrl { get;} = null;
+        public string? ProfilePicUrl { get; set;}
+
+        public AppModels(){}
     }
 }
