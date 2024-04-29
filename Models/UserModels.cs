@@ -8,6 +8,7 @@ namespace TaskTrackerBackend.Models
     public class UserModels
     {
         public int ID { get; set; }
+
         public string Username { get; set; }
 
         public string AccountCreated { get; set; }
@@ -17,5 +18,7 @@ namespace TaskTrackerBackend.Models
         public string? Salt { get; set; }
 
         public string? Hash { get; set; }
+
+        public UserModels(){}
     }
 }
