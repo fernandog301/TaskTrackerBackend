@@ -12,6 +12,7 @@ namespace TaskTrackerBackend.Models
         public string Username { get; set; }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         public string AccountCreated { get; set; }
 
         
@@ -20,6 +21,10 @@ namespace TaskTrackerBackend.Models
         
 >>>>>>> 68671510b6e5dca6dced2185bfea9b2c9df64832
         
+=======
+        
+
+>>>>>>> bc137981cea85b634c05ba70698df1bc0b516ae5
         public string? Salt { get; set; }
 
 

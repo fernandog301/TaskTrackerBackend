@@ -13,17 +13,22 @@ builder.Services.AddScoped<PostService>();
 builder.Services.AddScoped<AppService>();
 
 var ConnectionString = builder.Configuration.GetConnectionString("TaskTracker");
+
 builder.Services.AddDbContext<DataContext>(Options => Options.UseSqlServer(ConnectionString));
 
-builder.Services.AddCors(options => options.AddPolicy("TaskTracker",
+builder.Services.AddCors(options => options.AddPolicy("TaskTrackerPolicy",
  builder => {
-    builder.WithOrigins("http://localhost:5217", "http://localhost:3000", "http://localhost:3001", "")
+    builder.WithOrigins("http://localhost:5217", "http://localhost:3000", "http://localhost:3001")
     .AllowAnyHeader()
     .AllowAnyMethod();
  }
 ));
 
+
+
 builder.Services.AddControllers();
+
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

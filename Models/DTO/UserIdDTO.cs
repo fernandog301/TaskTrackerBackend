@@ -9,6 +9,6 @@ namespace TaskTrackerBackend.Models.DTO
     {
         public int UserId { get; set; }
         
-        public string Username { get; set; }
+        public string PublisherName { get; set; }
     }
 }
