@@ -20,7 +20,7 @@ builder.Services.AddDbContext<DataContext>(Options => Options.UseSqlServer(Conne
 builder.Services.AddCors(options => options.AddPolicy("TaskTrackerPolicy",
  builder =>
  {
-     builder.WithOrigins("http://localhost:5217", "http://localhost:3000", "http://localhost:3001")
+     builder.WithOrigins("http://localhost:5217", "http://localhost:3000", "http://localhost:3001", "https://maddieiscool.vercel.app")
      .AllowAnyHeader()
      .AllowAnyMethod();
  }
