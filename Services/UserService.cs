@@ -22,41 +22,41 @@ namespace TaskTrackerBackend.Services
             _context = context;
         }
 
-        // public bool DoesUserExist(string Username)
-        // {
-        //     return _context.UserInfo.SingleOrDefault(User => User.Username == Username) != null;
-        // }
+        public bool DoesUserExist(string Username)
+        {
+            return _context.UserInfo.SingleOrDefault(User => User.Username == Username) != null;
+        }
 
-        // public bool CreateUser(CreateAccountDTO UserToAdd)
-        // {
-        //     bool result = false;
+        public bool CreateUser(CreateAccountDTO UserToAdd)
+        {
+            bool result = false;
 
-        //     if(!DoesUserExist(UserToAdd.Username))
-        //     {
-        //         UserModels newUser = new UserModels();
+            if(!DoesUserExist(UserToAdd.Username))
+            {
+                UserModels newUser = new UserModels();
 
-        //         var hashPassword = HashPassword(UserToAdd.Password);
-        //             newUser.ID = UserToAdd.ID;
-        //             newUser.Username = UserToAdd.Username;        
-        //             newUser.Salt = hashPassword.Salt;
-        //             newUser.Hash = hashPassword.Hash;  
+                var hashPassword = HashPassword(UserToAdd.Password);
+                    newUser.ID = UserToAdd.ID;
+                    newUser.Username = UserToAdd.Username;        
+                    newUser.Salt = hashPassword.Salt;
+                    newUser.Hash = hashPassword.Hash;  
 
-        //             _context.Add(newUser);
+                    _context.Add(newUser);
 
                     result = _context.SaveChanges() != 0;  
                     result = true;    
             }
 
-        //     return result;
-        // }
+            return result;
+        }
 
 
-        // public PasswordDTO HashPassword(string Password)
-        // {
+        public PasswordDTO HashPassword(string Password)
+        {
 
-        //     PasswordDTO NewHashPassword = new PasswordDTO();
+            PasswordDTO NewHashPassword = new PasswordDTO();
 
-        //     byte[] SaltBytes = new byte[64];
+            byte[] SaltBytes = new byte[64];
             
             RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
 
@@ -71,9 +71,9 @@ namespace TaskTrackerBackend.Services
             NewHashPassword.Salt = salt;
             NewHashPassword.Hash = hash;
 
-        //     return NewHashPassword;
+            return NewHashPassword;
 
-        // }
+        }
 
         public bool VerifyPassword(string Password, string StoredHash, string StoredSalt)
         {
