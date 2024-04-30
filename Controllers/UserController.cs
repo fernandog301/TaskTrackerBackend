@@ -5,28 +5,59 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using TaskTrackerBackend.Models;
+using TaskTrackerBackend.Models.DTO;
+using TaskTrackerBackend.Services;
 
 namespace TaskTrackerBackend.Controllers
 {
+    [ApiController]
     [Route("[controller]")]
-    public class UserController : Controller
+    public class UserController : ControllerBase
     {
-        private readonly ILogger<UserController> _logger;
+        private readonly UserService _data;
 
-        public UserController(ILogger<UserController> logger)
+        public UserController(UserService data)
         {
-            _logger = logger;
+            _data = data;
+        }  
+
+        [HttpPost]
+        [Route("Login")]
+
+        public IActionResult Login([FromBody] LoginDTO User)
+        {
+            return _data.Login(User);
         }
 
-        public IActionResult Index()
+
+        [HttpPost]
+        [Route("CreateUser")]
+
+        public bool CreateUser(CreateAccountDTO UserToAdd)
         {
-            return View();
+            return _data.CreateUser(UserToAdd);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpPut]
+        [Route("UpdateUser")]
+
+        public bool UpdateUser(UserModels userToUpdate)
         {
-            return View("Error!");
+            return _data.UpdateUser(userToUpdate);
         }
+
+        [HttpDelete]
+        [Route("DeleteUser")]
+
+        public bool DeleteUser(string userToDelete)
+        {
+            return _data.DeleteUser(userToDelete);
+        }
+
+
+
+
+
     }
 }
