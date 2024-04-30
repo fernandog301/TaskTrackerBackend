@@ -2,17 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TaskTrackerBackend.Models;
 
-namespace TaskTrackerBackend.Models.DTO
+namespace WebApiTest.Models.DTO
 {
-    public class CreatePostDTO
+    public class EditPostDTO
     {
-        public string BoardID { get; set; }
+        public int ID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Assignee { get; set; }
-        public string DateCreated { get; set; }
         public string Status { get; set; }
         public string PriorityLevel { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }
