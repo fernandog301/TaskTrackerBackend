@@ -7,6 +7,7 @@ namespace TaskTrackerBackend.Models
 {
     public class AppModels
     {
+        public int ID { get; set; }
 
         public string? ProfilePic { get; set; }
 

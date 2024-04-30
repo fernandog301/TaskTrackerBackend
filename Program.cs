@@ -11,16 +11,18 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<PasswordService>();
 builder.Services.AddScoped<PostService>();
 builder.Services.AddScoped<AppService>();
+builder.Services.AddScoped<BoardService>();
 
-var ConnectionString = builder.Configuration.GetConnectionString("TaskTracker");
+var ConnectionStrings = builder.Configuration.GetConnectionString("TaskTracker");
 
-builder.Services.AddDbContext<DataContext>(Options => Options.UseSqlServer(ConnectionString));
+builder.Services.AddDbContext<DataContext>(Options => Options.UseSqlServer(ConnectionStrings));
 
 builder.Services.AddCors(options => options.AddPolicy("TaskTrackerPolicy",
- builder => {
-    builder.WithOrigins("http://localhost:5217", "http://localhost:3000", "http://localhost:3001")
-    .AllowAnyHeader()
-    .AllowAnyMethod();
+ builder =>
+ {
+     builder.WithOrigins("http://localhost:5217", "http://localhost:3000", "http://localhost:3001")
+     .AllowAnyHeader()
+     .AllowAnyMethod();
  }
 ));
 
