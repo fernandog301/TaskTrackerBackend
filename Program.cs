@@ -15,7 +15,7 @@ builder.Services.AddScoped<BoardService>();
 
 var ConnectionStrings = builder.Configuration.GetConnectionString("TaskTracker");
 
-builder.Services.AddDbContext<DataContext>(Options => Options.UseSqlServer(ConnectionStrings));
+builder.Services.AddDbContext<DataContext>(Options => Options.UseSqlServer(ConnectionStrings, providerOptions => providerOptions.EnableRetryOnFailure()));
 
 builder.Services.AddCors(options => options.AddPolicy("TaskTrackerPolicy",
  builder =>
