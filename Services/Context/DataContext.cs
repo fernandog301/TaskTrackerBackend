@@ -13,6 +13,7 @@ namespace TaskTrackerBackend.Services.Context
         public DbSet<UserModels> UserInfo { get; set;}
         public DbSet<CommentsModels> CommentInfo {get; set;}
         public DbSet<AppModels> AppInfo { get; set; }
+        public DbSet<BoardModel> BoardInfo { get; set; }
 
         public DataContext(DbContextOptions options) : base(options){}
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using TaskTrackerBackend.Models;
 using TaskTrackerBackend.Models.DTO;
 using TaskTrackerBackend.Services.Context;
+using WebApiTest.Models.DTO;
 
 namespace TaskTrackerBackend.Services
 {
@@ -17,15 +18,27 @@ namespace TaskTrackerBackend.Services
             _context = context;
         }
 
-        public UserModels GetUserByUsername(string username) {
+        public UserModels GetUserByUsername(string username)
+        {
             return _context.UserInfo.SingleOrDefault(user => user.Username == username);
         }
 
-        public bool CreatePost(string username, CreatePostDTO createdPost) {
-            UserModels foundUser = GetUserByUsername(username);
+        public PostModels GetPostByID(int ID)
+        {
+            return _context.PostInfo.SingleOrDefault(post => post.ID == ID);
+        }
+
+        public BoardModel GetBoardModelByID(string BoardID)
+        {
+            return _context.BoardInfo.SingleOrDefault(board => board.BoardID == BoardID);
+        }
+
+        public bool CreatePost(string BoardID, CreatePostDTO createdPost)
+        {
+            BoardModel foundBoard = GetBoardModelByID(BoardID);
             UserModels assignee = GetUserByUsername(createdPost.Assignee);
             var newPost = new PostModels();
-            newPost.UserId = foundUser.ID;
+            newPost.BoardID = createdPost.BoardID;
             newPost.Description = createdPost.Description;
             newPost.Title = createdPost.Title;
             newPost.DateCreated = createdPost.DateCreated;
@@ -35,9 +48,50 @@ namespace TaskTrackerBackend.Services
             newPost.Comments = new List<CommentsModels>();
             newPost.IsDeleted = false;
 
+            foundBoard.Posts.Add(newPost);
+
             return _context.SaveChanges() != 0;
         }
 
-        
+        public bool EditPost(EditPostDTO editedPost)
+        {
+
+            UserModels foundUser = GetUserByUsername(editedPost.Assignee);
+            PostModels foundPost = GetPostByID(editedPost.ID);
+            BoardModel foundBoard = GetBoardModelByID(foundPost.BoardID);
+
+            int index = foundBoard.Posts.IndexOf(foundPost);
+
+            foundPost.Title = editedPost.Title;
+            foundPost.Description = editedPost.Description;
+            foundPost.AssigneeID = foundUser.ID;
+            foundPost.Status = editedPost.Status;
+            foundPost.PriorityLevel = editedPost.PriorityLevel;
+
+
+            foundBoard.Posts[index] = foundPost;
+
+            _context.Update<BoardModel>(foundBoard);
+            _context.Update<PostModels>(foundPost);
+
+            return _context.SaveChanges() != 0;
+        }
+
+        public bool DeletePostById(int id)
+        {
+            PostModels foundPost = GetPostByID(id);
+            BoardModel foundBoard = GetBoardModelByID(foundPost.BoardID);
+            int index = foundBoard.Posts.IndexOf(foundPost);
+
+            foundPost.IsDeleted = true;
+
+            foundBoard.Posts[index] = foundPost;
+
+            _context.Update<BoardModel>(foundBoard);
+            _context.Update<PostModels>(foundPost);
+            return _context.SaveChanges() != 0;
+        }
     }
+
+
 }
