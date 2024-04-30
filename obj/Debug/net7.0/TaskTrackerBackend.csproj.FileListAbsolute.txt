@@ -74,3 +74,4 @@ C:\Users\Fernando Gutierrez\CodeStack\Week9\TaskTrackerBackend\obj\Debug\net7.0\
 C:\Users\Fernando Gutierrez\CodeStack\Week9\TaskTrackerBackend\obj\Debug\net7.0\TaskTrackerBackend.pdb
 C:\Users\Fernando Gutierrez\CodeStack\Week9\TaskTrackerBackend\obj\Debug\net7.0\TaskTrackerBackend.genruntimeconfig.cache
 C:\Users\Fernando Gutierrez\CodeStack\Week9\TaskTrackerBackend\obj\Debug\net7.0\ref\TaskTrackerBackend.dll
+C:\Users\Fernando Gutierrez\CodeStack\Week9\TaskTrackerBackend\bin\Debug\net7.0\package-lock.json

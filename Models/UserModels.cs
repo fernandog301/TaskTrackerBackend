@@ -12,7 +12,7 @@ namespace TaskTrackerBackend.Models
         public string Username { get; set; }
 
         
-        
+
         public string? Salt { get; set; }
 
 
