@@ -13,7 +13,7 @@ using WebApiTest.Models.DTO;
 namespace TaskTrackerBackend.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class PostController : ControllerBase
     {
         private readonly PostService _posts;
@@ -27,13 +27,6 @@ namespace TaskTrackerBackend.Controllers
         public PostModels GetPostByID(int ID)
         {
             return _posts.GetPostByID(ID);
-        }
-
-        [HttpGet]
-        [Route("GetPostsByBoardID/{BoardID}")]
-        public IEnumerable<PostModels> GetPostsByBoardID(string BoardID)
-        {
-            return _posts.GetPostsByBoard(BoardID);
         }
 
         [HttpPost]

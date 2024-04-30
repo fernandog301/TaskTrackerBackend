@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fwuR4apbhLxgXE7oYbo87mODFYMCdhh9chlkTpRqgllTpM6+tsjsDkW6qj3Yebu7ekbeKWRV2ZLxyR30C4BFaw==",
+  "dgSpecHash": "wC/1qCAEE70tZZoTHLnDlFprk1N9aC2HblPeqbr8xiagaCKHBG1ev1OoLhUBO6K7nkLfkr5JgpeKjYRTU9ecrA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jaykh\\OneDrive\\Desktop\\CodeStack Academy\\Git repo\\TaskTrackerBackend\\TaskTrackerBackend.csproj",
+  "projectFilePath": "C:\\Users\\jaykh\\OneDrive\\Desktop\\CodeStack Academy\\Git repo\\TaskTrackerBackend-1\\TaskTrackerBackend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jaykh\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\jaykh\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

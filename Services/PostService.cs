@@ -28,13 +28,14 @@ namespace TaskTrackerBackend.Services
             return _context.PostInfo.SingleOrDefault(post => post.ID == ID);
         }
 
-        public IEnumerable<PostModels> GetPostsByBoard(string BoardID)
+        public BoardModel GetBoardModelByID(string BoardID)
         {
-            return _context.PostInfo.Where(post => post.BoardID == BoardID);
+            return _context.BoardInfo.SingleOrDefault(board => board.BoardID == BoardID);
         }
 
         public bool CreatePost(string BoardID, CreatePostDTO createdPost)
         {
+            BoardModel foundBoard = GetBoardModelByID(BoardID);
             UserModels assignee = GetUserByUsername(createdPost.Assignee);
             var newPost = new PostModels();
             newPost.BoardID = createdPost.BoardID;
@@ -47,27 +48,46 @@ namespace TaskTrackerBackend.Services
             newPost.Comments = new List<CommentsModels>();
             newPost.IsDeleted = false;
 
+            foundBoard.Posts.Add(newPost);
+
             return _context.SaveChanges() != 0;
         }
 
         public bool EditPost(EditPostDTO editedPost)
         {
+
             UserModels foundUser = GetUserByUsername(editedPost.Assignee);
             PostModels foundPost = GetPostByID(editedPost.ID);
+            BoardModel foundBoard = GetBoardModelByID(foundPost.BoardID);
+
+            int index = foundBoard.Posts.IndexOf(foundPost);
+
             foundPost.Title = editedPost.Title;
             foundPost.Description = editedPost.Description;
             foundPost.AssigneeID = foundUser.ID;
             foundPost.Status = editedPost.Status;
             foundPost.PriorityLevel = editedPost.PriorityLevel;
 
+
+            foundBoard.Posts[index] = foundPost;
+
+            _context.Update<BoardModel>(foundBoard);
             _context.Update<PostModels>(foundPost);
 
             return _context.SaveChanges() != 0;
         }
 
-        public bool DeletePostById(int id){
+        public bool DeletePostById(int id)
+        {
             PostModels foundPost = GetPostByID(id);
+            BoardModel foundBoard = GetBoardModelByID(foundPost.BoardID);
+            int index = foundBoard.Posts.IndexOf(foundPost);
+
             foundPost.IsDeleted = true;
+
+            foundBoard.Posts[index] = foundPost;
+
+            _context.Update<BoardModel>(foundBoard);
             _context.Update<PostModels>(foundPost);
             return _context.SaveChanges() != 0;
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jaykh\\OneDrive\\Desktop\\CodeStack Academy\\Git repo\\TaskTrackerBackend\\TaskTrackerBackend.csproj": {}
+    "C:\\Users\\jaykh\\OneDrive\\Desktop\\CodeStack Academy\\Git repo\\TaskTrackerBackend-1\\TaskTrackerBackend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jaykh\\OneDrive\\Desktop\\CodeStack Academy\\Git repo\\TaskTrackerBackend\\TaskTrackerBackend.csproj": {
+    "C:\\Users\\jaykh\\OneDrive\\Desktop\\CodeStack Academy\\Git repo\\TaskTrackerBackend-1\\TaskTrackerBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jaykh\\OneDrive\\Desktop\\CodeStack Academy\\Git repo\\TaskTrackerBackend\\TaskTrackerBackend.csproj",
+        "projectUniqueName": "C:\\Users\\jaykh\\OneDrive\\Desktop\\CodeStack Academy\\Git repo\\TaskTrackerBackend-1\\TaskTrackerBackend.csproj",
         "projectName": "TaskTrackerBackend",
-        "projectPath": "C:\\Users\\jaykh\\OneDrive\\Desktop\\CodeStack Academy\\Git repo\\TaskTrackerBackend\\TaskTrackerBackend.csproj",
+        "projectPath": "C:\\Users\\jaykh\\OneDrive\\Desktop\\CodeStack Academy\\Git repo\\TaskTrackerBackend-1\\TaskTrackerBackend.csproj",
         "packagesPath": "C:\\Users\\jaykh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jaykh\\OneDrive\\Desktop\\CodeStack Academy\\Git repo\\TaskTrackerBackend\\obj\\",
+        "outputPath": "C:\\Users\\jaykh\\OneDrive\\Desktop\\CodeStack Academy\\Git repo\\TaskTrackerBackend-1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jaykh\\AppData\\Roaming\\NuGet\\NuGet.Config"
