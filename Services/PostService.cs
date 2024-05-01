@@ -28,14 +28,18 @@ namespace TaskTrackerBackend.Services
             return _context.PostInfo.SingleOrDefault(post => post.ID == ID);
         }
 
+        public IEnumerable<PostModels> GetPostsByBoardId(string BoardID){
+            return _context.PostInfo.Where(post => post.BoardID == BoardID);
+        }
+
         public BoardModel GetBoardModelByID(string BoardID)
         {
             return _context.BoardInfo.SingleOrDefault(board => board.BoardID == BoardID);
         }
 
-        public bool CreatePost(string BoardID, CreatePostDTO createdPost)
+        public bool CreatePost(CreatePostDTO createdPost)
         {
-            BoardModel foundBoard = GetBoardModelByID(BoardID);
+            BoardModel foundBoard = GetBoardModelByID(createdPost.BoardID);
             UserModels assignee = GetUserByUsername(createdPost.Assignee);
             var newPost = new PostModels();
             newPost.BoardID = createdPost.BoardID;

@@ -23,16 +23,16 @@ namespace TaskTrackerBackend.Controllers
         }
 
         [HttpGet] 
-        [Route("GetPostByID/{ID}")]
-        public PostModels GetPostByID(int ID)
+        [Route("GetPostsByBoardID/{ID}")]
+        public IEnumerable<PostModels> GetPostByID(string ID)
         {
-            return _posts.GetPostByID(ID);
+            return _posts.GetPostsByBoardId(ID);
         }
 
         [HttpPost]
-        [Route("CreatePost/{username}")]
-        public bool CreatePost(string username, CreatePostDTO createdPost){
-            return _posts.CreatePost(username, createdPost);
+        [Route("CreatePost")]
+        public bool CreatePost(CreatePostDTO createdPost){
+            return _posts.CreatePost( createdPost);
         }
 
         [HttpPut]
