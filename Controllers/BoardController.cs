@@ -25,11 +25,24 @@ namespace TaskTrackerBackend.Controllers
             return _board.GetPostsByBoardID(BoardID);
         }
 
+        [HttpGet]
+        [Route("GetBoardsByUser/{username}")]   
+        public List<BoardModel> GetBoardsByUser(string username){
+            return _board.GetBoardModelsByUser(username);
+        }
+
         [HttpPost]
         [Route("CreateBoard")]
         public bool CreateBoard(CreateBoardDTO newBoard){
             return _board.CreateBoard(newBoard);
         }
+
+        [HttpPost]
+        [Route("AddBoardToUser/{id}/{username}")]
+        public bool AddBoardToUser(int id, string username){
+            return _board.AddBoardToUser(id, username);
+        }
+
 
     }
 }

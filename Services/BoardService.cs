@@ -22,6 +22,18 @@ namespace TaskTrackerBackend.Services
             return _context.UserInfo.SingleOrDefault(user => user.Username == username);
         }
 
+        public BoardModel GetBoardModelByID(int id){
+            return _context.BoardInfo.SingleOrDefault(board => board.ID == id);
+        }
+
+        public bool AddBoardToUser(int id, string username){
+            UserModels foundUser = GetUserByUsername(username);
+            BoardModel board = new BoardModel();
+            foundUser.BoardInfo.Add(board);
+            _context.Update<UserModels>(foundUser);
+            return _context.SaveChanges() != 0;
+        }
+
         public string CreateBoardID()
         {
             string[] abcArr = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
@@ -40,6 +52,11 @@ namespace TaskTrackerBackend.Services
         public List<BoardModel> GetAllBoards()
         {
             return _context.BoardInfo.ToList();
+        }
+
+        public List<BoardModel> GetBoardModelsByUser(string username){
+            UserModels foundUser = GetUserByUsername(username);
+            return foundUser.BoardInfo;
         }
 
         public bool CreateBoard(CreateBoardDTO newBoard)
@@ -70,11 +87,11 @@ namespace TaskTrackerBackend.Services
                 }
             }
 
-            foundUser.BoardInfo.Add(createdBoard);
-
-            _context.Update<UserModels>(foundUser);
-
             _context.Add(createdBoard);
+            
+            // foundUser.BoardInfo.Add(createdBoard);
+
+            // _context.Update<UserModels>(foundUser);
 
             return _context.SaveChanges() != 0;
         }

@@ -38,10 +38,11 @@ namespace TaskTrackerBackend.Services
                 var hashPassword = HashPassword(UserToAdd.Password);
                     newUser.ID = UserToAdd.ID;
                     newUser.Username = UserToAdd.Username;   
-                    newUser.Password = UserToAdd.Password;     
+                    newUser.Password = "Cant see it";
                     newUser.Salt = hashPassword.Salt;
                     newUser.Hash = hashPassword.Hash;  
                     newUser.AccountCreated = true;
+                    newUser.BoardInfo = new List<BoardModel>();
 
                     _context.Add(newUser);
 
