@@ -89,9 +89,9 @@ namespace TaskTrackerBackend.Services
 
             _context.Add(createdBoard);
             
-            // foundUser.BoardInfo.Add(createdBoard);
+            foundUser.BoardInfo.Add(createdBoard);
 
-            // _context.Update<UserModels>(foundUser);
+            _context.Update<UserModels>(foundUser);
 
             return _context.SaveChanges() != 0;
         }
