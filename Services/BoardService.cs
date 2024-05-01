@@ -44,9 +44,11 @@ namespace TaskTrackerBackend.Services
         public bool CreateBoard(string BoardName, string Username)
         {
             bool falseId = true;
+            UserModels foundUser = GetUserByUsername(Username);
             BoardModel createdBoard = new BoardModel();
             createdBoard.BoardName = BoardName;
 
+            
             while (falseId)
             {
                 bool newId = true;
@@ -65,6 +67,8 @@ namespace TaskTrackerBackend.Services
                     falseId = false;
                 }
             }
+
+            foundUser.BoardInfo.Add(createdBoard);
 
             _context.Add(createdBoard);
 
