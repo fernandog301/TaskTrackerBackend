@@ -24,5 +24,11 @@ namespace TaskTrackerBackend.Controllers
             return _board.GetPostsByBoardID(BoardID);
         }
 
+        [HttpPost]
+        [Route("CreateBoard/{boardName}/{username}")]
+        public bool CreateBoard(string boardName, string username){
+            return _board.CreateBoard(boardName, username);
+        }
+
     }
 }
