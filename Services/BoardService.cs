@@ -54,9 +54,9 @@ namespace TaskTrackerBackend.Services
             return _context.BoardInfo.ToList();
         }
 
-        public List<BoardModel> GetBoardModelsByUser(string username){
+        public IEnumerable<BoardModel> GetBoardModelsByUser(string username){
             UserModels foundUser = GetUserByUsername(username);
-            return foundUser.BoardInfo;
+            return _context.BoardInfo.Where(blog => blog.UserID == foundUser.ID);
         }
 
         public bool CreateBoard(CreateBoardDTO newBoard)
@@ -66,7 +66,7 @@ namespace TaskTrackerBackend.Services
             BoardModel createdBoard = new BoardModel();
             createdBoard.BoardName = newBoard.BoardName;
             createdBoard.Posts = new List<PostModels>();
-
+            createdBoard.UserID = foundUser.ID;
             
             while (falseId)
             {
@@ -88,10 +88,6 @@ namespace TaskTrackerBackend.Services
             }
 
             _context.Add(createdBoard);
-            
-            foundUser.BoardInfo.Add(createdBoard);
-
-            _context.Update<UserModels>(foundUser);
 
             return _context.SaveChanges() != 0;
         }
