@@ -14,7 +14,7 @@ namespace TaskTrackerBackend.Models
 
 
 
-        public List<BoardModel>BoardInfo { get; set; }
+        public List<BoardModel>? BoardInfo { get; set; }
 
 
 
