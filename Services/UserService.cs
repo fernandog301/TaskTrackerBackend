@@ -36,8 +36,10 @@ namespace TaskTrackerBackend.Services
                 UserModels newUser = new UserModels();
 
                 var hashPassword = HashPassword(UserToAdd.Password);
+                
                     newUser.ID = UserToAdd.ID;
-                    newUser.Username = UserToAdd.Username;        
+                    newUser.Username = UserToAdd.Username;
+
                     newUser.Salt = hashPassword.Salt;
                     newUser.Hash = hashPassword.Hash;  
 
