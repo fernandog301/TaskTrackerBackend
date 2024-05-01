@@ -124,6 +124,12 @@ namespace TaskTrackerBackend.Services
             return _context.UserInfo.SingleOrDefault(user => user.Username == username);
         }
 
+        public List<BoardModel> GetBaordById(string BoardID)
+        {
+            return _context.BoardInfo.Where(board => board.BoardID == BoardID).ToList();
+        }
+
+
         public bool UpdateUser(UserModels userToUpdate)
         {
             _context.Update<UserModels>(userToUpdate);
