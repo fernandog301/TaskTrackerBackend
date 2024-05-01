@@ -8,6 +8,7 @@ namespace TaskTrackerBackend.Models
     public class BoardModel
     {
         public int ID { get; set; }
+        public string BoardName { get; set; }
         public string BoardID { get; set; }
         public List<PostModels> Posts { get; set; }
     }
