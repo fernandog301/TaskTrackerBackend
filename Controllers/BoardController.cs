@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TaskTrackerBackend.Models;
+using TaskTrackerBackend.Models.DTO;
 using TaskTrackerBackend.Services;
 
 namespace TaskTrackerBackend.Controllers
@@ -25,9 +26,9 @@ namespace TaskTrackerBackend.Controllers
         }
 
         [HttpPost]
-        [Route("CreateBoard/{boardName}/{username}")]
-        public bool CreateBoard(string boardName, string username){
-            return _board.CreateBoard(boardName, username);
+        [Route("CreateBoard")]
+        public bool CreateBoard(CreateBoardDTO newBoard){
+            return _board.CreateBoard(newBoard);
         }
 
     }

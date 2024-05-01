@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TaskTrackerBackend.Models;
+using TaskTrackerBackend.Models.DTO;
 using TaskTrackerBackend.Services.Context;
 
 namespace TaskTrackerBackend.Services
@@ -41,12 +42,13 @@ namespace TaskTrackerBackend.Services
             return _context.BoardInfo.ToList();
         }
 
-        public bool CreateBoard(string BoardName, string Username)
+        public bool CreateBoard(CreateBoardDTO newBoard)
         {
             bool falseId = true;
-            UserModels foundUser = GetUserByUsername(Username);
+            UserModels foundUser = GetUserByUsername(newBoard.Username);
             BoardModel createdBoard = new BoardModel();
-            createdBoard.BoardName = BoardName;
+            createdBoard.BoardName = newBoard.BoardName;
+            createdBoard.Posts = new List<PostModels>();
 
             
             while (falseId)
@@ -69,6 +71,8 @@ namespace TaskTrackerBackend.Services
             }
 
             foundUser.BoardInfo.Add(createdBoard);
+
+            _context.Update<UserModels>(foundUser);
 
             _context.Add(createdBoard);
 
