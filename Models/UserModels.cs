@@ -14,11 +14,11 @@ namespace TaskTrackerBackend.Models
 
 
 
-        public List<BoardModel> BoardInfo { get; set; }
+        public string? BoardIDs { get; set; }
 
 
 
-
+        public string? ProfileImg {get; set; }
 
 
 

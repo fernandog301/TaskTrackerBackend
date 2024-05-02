@@ -27,6 +27,45 @@ namespace TaskTrackerBackend.Services
             return _context.UserInfo.SingleOrDefault(User => User.Username == Username) != null;
         }
 
+        public string GenerateImgID()
+        {
+            string[] abcArr = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+            Random random = new Random();
+
+            if (random.Next(0, 2)== 0)
+            {
+
+            }
+
+            int firstLetterIndex  = random.Next(0, abcArr.Length);
+
+            string firstLetter = abcArr[firstLetterIndex];
+
+            string remainingDigits = "";
+                for (int i = 0; i < 4; i++)
+                {
+                    if (random.Next(0, 2)== 0)
+                    {
+                        int i 
+                    }
+                    // remainingDigits += random.Next(0, 10); // Generate random digit between 0 and 9
+                }
+            
+            // string imgID = firstLetter + remainingDigits;
+            //     if (firstLetterIndex < 13)
+            //     {
+            //         // Do something if the first letter is before 'N' in the alphabet
+            //     }
+            //     else
+            //     {
+            //         // Do something else if the first letter is 'N' or after in the alphabet
+            //     }
+
+            return imgID;
+
+        }
+
+
         public bool CreateUser(CreateAccountDTO UserToAdd)
         {
             bool result = false;
@@ -159,7 +198,10 @@ namespace TaskTrackerBackend.Services
             return _context.UserInfo.SingleOrDefault(user => user.ID == id);
         }
 
-
+        public bool GetImage()
+        {
+            return _context.ImageInfo.Any()
+        }
         public bool DeleteUser(string userToDelete)
         {
             // We are only sending over the username
