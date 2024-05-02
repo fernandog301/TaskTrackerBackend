@@ -25,9 +25,6 @@ namespace TaskTrackerBackend.Services
         public BoardModel GetBoardModelByBoardID(string id){
             return _context.BoardInfo.SingleOrDefault(board => board.BoardID == id);
         }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
         public bool AddBoardToUser(string id, string username){
             UserModels foundUser = GetUserByUsername(username);
             BoardModel board = GetBoardModelByID(id);
@@ -37,24 +34,6 @@ namespace TaskTrackerBackend.Services
             _context.Update<UserModels>(foundUser);
             return _context.SaveChanges() != 0;
         }
-=======
-        // public bool AddBoardToUser(int id, string username){
-        //     UserModels foundUser = GetUserByUsername(username);
-        //     BoardModel board = new BoardModel();
-        //     foundUser.BoardInfo.Add(board);
-        //     _context.Update<UserModels>(foundUser);
-        //     return _context.SaveChanges() != 0;
-        // }
->>>>>>> f1a5b172a510a8592b9a248d1cd3f327c0f5955c
-=======
-        public bool AddBoardToUser(int id, string username){
-            UserModels foundUser = GetUserByUsername(username);
-            BoardModel board = new BoardModel();
-            foundUser.BoardInfo.Add(board);
-            _context.Update<UserModels>(foundUser);
-            return _context.SaveChanges() != 0;
-        }
->>>>>>> 65218eb263f7fa8069a091c388222f8090547920
 
         public string CreateBoardID()
         {
