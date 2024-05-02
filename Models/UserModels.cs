@@ -14,7 +14,11 @@ namespace TaskTrackerBackend.Models
 
 
 
+<<<<<<< HEAD
         public string? BoardIDs { get; set; }
+=======
+        public List<BoardModel>? BoardInfo { get; set; }
+>>>>>>> 8f2c2b167812214b2955e951801de21ad0fb8b3b
 
 
 
