@@ -77,13 +77,19 @@ namespace TaskTrackerBackend.Services
                 var hashPassword = HashPassword(UserToAdd.Password);
                 
                     newUser.ID = UserToAdd.ID;
-<<<<<<< HEAD
+
+
+
                     newUser.Username = UserToAdd.Username;   
+
+                    
                     newUser.Password = "Cant see it";
-=======
+                    
                     newUser.Username = UserToAdd.Username;
 
->>>>>>> 8f2c2b167812214b2955e951801de21ad0fb8b3b
+
+
+
                     newUser.Salt = hashPassword.Salt;
                     newUser.Hash = hashPassword.Hash;  
                     newUser.AccountCreated = true;
