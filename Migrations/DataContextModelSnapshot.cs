@@ -55,6 +55,9 @@ namespace TaskTrackerBackend.Migrations
                     b.Property<string>("BoardName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
                     b.Property<int?>("UserModelsID")
                         .HasColumnType("int");
 

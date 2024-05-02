@@ -27,7 +27,7 @@ namespace TaskTrackerBackend.Controllers
 
         [HttpGet]
         [Route("GetBoardsByUser/{username}")]   
-        public List<BoardModel> GetBoardsByUser(string username){
+        public IEnumerable<BoardModel> GetBoardsByUser(string username){
             return _board.GetBoardModelsByUser(username);
         }
 

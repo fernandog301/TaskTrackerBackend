@@ -47,6 +47,7 @@ namespace TaskTrackerBackend.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<int>(type: "int", nullable: false),
                     BoardName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BoardID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserModelsID = table.Column<int>(type: "int", nullable: true)

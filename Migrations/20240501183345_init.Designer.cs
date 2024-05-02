@@ -12,7 +12,7 @@ using TaskTrackerBackend.Services.Context;
 namespace TaskTrackerBackend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240501175412_init")]
+    [Migration("20240501183345_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -57,6 +57,9 @@ namespace TaskTrackerBackend.Migrations
 
                     b.Property<string>("BoardName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
 
                     b.Property<int?>("UserModelsID")
                         .HasColumnType("int");
