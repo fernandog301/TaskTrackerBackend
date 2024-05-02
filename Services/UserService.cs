@@ -49,7 +49,9 @@ namespace TaskTrackerBackend.Services
             return remainingDigits;
 
         }
-                    
+            
+       
+
         public bool CreateUser(CreateAccountDTO UserToAdd)
         {
             bool result = false;
@@ -62,7 +64,7 @@ namespace TaskTrackerBackend.Services
                 
                     newUser.ID = UserToAdd.ID;
 
-
+                    newUser.ProfileImg = UserToAdd.ProfileImg;
 
                     newUser.Username = UserToAdd.Username;   
 
@@ -162,10 +164,10 @@ namespace TaskTrackerBackend.Services
             return _context.UserInfo.SingleOrDefault(user => user.Username == username);
         }
 
-        public List<BoardModel> GetBaordById(string BoardID)
-        {
-            return _context.BoardInfo.Where(board => board.BoardID == BoardID).ToList();
-        }
+        // public List<BoardModel> GetBaordById(string BoardID)
+        // {
+        //     return _context.BoardInfo.Where(board => board.BoardID == BoardID).ToList();
+        // }
 
 
         public bool UpdateUser(UserModels userToUpdate)
@@ -173,6 +175,21 @@ namespace TaskTrackerBackend.Services
             _context.Update<UserModels>(userToUpdate);
             return _context.SaveChanges() !=0 ;
         }
+
+        public bool UpdateProfileImg(int id, string profileImg)
+        {   
+            UserModels foundUser = GetUserById(id);
+
+             bool result = false;
+             if(foundUser != null)
+             {
+                foundUser.ProfileImg = profileImg;
+                _context.Update<UserModels>(foundUser);
+                result = _context.SaveChanges() !=0 ;
+             }
+             return result;
+        }
+
 
         public bool UpdateUsername(int id, string username)
         {

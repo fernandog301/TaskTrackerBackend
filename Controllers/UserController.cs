@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -46,6 +47,14 @@ namespace TaskTrackerBackend.Controllers
         {
             return _data.UpdateUser(userToUpdate);
         }
+        
+        [HttpPut]
+        [Route("UpdateUsername")]
+        public bool UpdateUsername(int id, string username)
+        {
+            return _data.UpdateUsername(id,username);
+        }
+
 
         [HttpDelete]
         [Route("DeleteUser")]
@@ -55,6 +64,21 @@ namespace TaskTrackerBackend.Controllers
             return _data.DeleteUser(userToDelete);
         }
 
+        [HttpGet]
+        [Route("GetUserByUsername")]
+        public UserModels GetUserByUsername(string username)
+        {
+            return _data.GetUserByUsername(username);
+        }
+
+        [HttpPut]
+        [Route("UpdateProfileImg")]
+        public bool UpdateProfileImg(int id, string profileImg)
+        {
+            return _data.UpdateProfileImg(id,profileImg);
+        }
+
+
 
         [HttpGet]
         [Route("GenerateImgID")]
@@ -63,13 +87,8 @@ namespace TaskTrackerBackend.Controllers
             return _data.GenerateImgID();
         }
 
-        [HttpGet]
-        [Route("GetUserByUsername")]
-        public UserModels GetUserByUsername(string username)
-        {
-            return _data.GetUserByUsername(username);
-        }
-
+       
+        
 
 
 
