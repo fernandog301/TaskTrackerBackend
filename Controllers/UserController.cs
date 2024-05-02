@@ -49,7 +49,7 @@ namespace TaskTrackerBackend.Controllers
         }
         
         [HttpPut]
-        [Route("UpdateUsername")]
+        [Route("UpdateUsername/{id}/{username}")]
         public bool UpdateUsername(int id, string username)
         {
             return _data.UpdateUsername(id,username);
@@ -57,7 +57,7 @@ namespace TaskTrackerBackend.Controllers
 
 
         [HttpDelete]
-        [Route("DeleteUser")]
+        [Route("DeleteUser/{userToDelete}")]
 
         public bool DeleteUser(string userToDelete)
         {
@@ -65,14 +65,14 @@ namespace TaskTrackerBackend.Controllers
         }
 
         [HttpGet]
-        [Route("GetUserByUsername")]
+        [Route("GetUserByUsername/{username}")]
         public UserModels GetUserByUsername(string username)
         {
             return _data.GetUserByUsername(username);
         }
 
         [HttpPut]
-        [Route("UpdateProfileImg")]
+        [Route("UpdateProfileImg/{id}/{profileImg}")]
         public bool UpdateProfileImg(int id, string profileImg)
         {
             return _data.UpdateProfileImg(id,profileImg);
