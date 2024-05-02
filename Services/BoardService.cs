@@ -22,14 +22,16 @@ namespace TaskTrackerBackend.Services
             return _context.UserInfo.SingleOrDefault(user => user.Username == username);
         }
 
-        public BoardModel GetBoardModelByID(int id){
-            return _context.BoardInfo.SingleOrDefault(board => board.ID == id);
+        public BoardModel GetBoardModelByBoardID(string id){
+            return _context.BoardInfo.SingleOrDefault(board => board.BoardID == id);
         }
 
-        public bool AddBoardToUser(int id, string username){
+        public bool AddBoardToUser(string id, string username){
             UserModels foundUser = GetUserByUsername(username);
-            BoardModel board = new BoardModel();
-            foundUser.BoardInfo.Add(board);
+            BoardModel board = GetBoardModelByID(id);
+            if(!foundUser.BoardIDs.Contains(board.BoardID)){
+                foundUser.BoardIDs += board.BoardID  + "-";
+            }
             _context.Update<UserModels>(foundUser);
             return _context.SaveChanges() != 0;
         }
@@ -65,7 +67,6 @@ namespace TaskTrackerBackend.Services
             UserModels foundUser = GetUserByUsername(newBoard.Username);
             BoardModel createdBoard = new BoardModel();
             createdBoard.BoardName = newBoard.BoardName;
-            createdBoard.Posts = new List<PostModels>();
             createdBoard.UserID = foundUser.ID;
             
             while (falseId)
@@ -97,11 +98,5 @@ namespace TaskTrackerBackend.Services
             return _context.BoardInfo.SingleOrDefault(board => board.BoardID == BoardID);
         }
 
-        public List<PostModels> GetPostsByBoardID(string BoardID)
-        {
-            BoardModel foundBoard = GetBoardModelByID(BoardID);
-
-            return foundBoard.Posts;
-        }
     }
 }

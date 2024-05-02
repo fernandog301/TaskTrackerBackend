@@ -11,7 +11,6 @@ namespace TaskTrackerBackend.Models
         public int UserID {get; set; }
         public string? BoardName { get; set; }
         public string? BoardID { get; set; }
-        public List<PostModels>? Posts { get; set; }
 
         public BoardModel () {}
     }
