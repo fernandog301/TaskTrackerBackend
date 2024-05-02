@@ -20,15 +20,9 @@ namespace TaskTrackerBackend.Controllers
         }
 
         [HttpGet]
-        [Route("GetPostsByBoardID/{BoardID}")]
-        public List<PostModels> GetPostsByBoardID(string BoardID){
-            return _board.GetPostsByBoardID(BoardID);
-        }
-
-        [HttpGet]
-        [Route("GetBoardsByUser/{username}")]   
-        public IEnumerable<BoardModel> GetBoardsByUser(string username){
-            return _board.GetBoardModelsByUser(username);
+        [Route("GetBoardByBoardID/{id}")]
+        public BoardModel GetBoardsByBoardID(string id){
+            return _board.GetBoardModelByBoardID(id);
         }
 
         [HttpPost]
@@ -37,12 +31,10 @@ namespace TaskTrackerBackend.Controllers
             return _board.CreateBoard(newBoard);
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("AddBoardToUser/{id}/{username}")]
-        public bool AddBoardToUser(int id, string username){
+        public bool AddBoardToUser(string id, string username){
             return _board.AddBoardToUser(id, username);
         }
-
-
     }
 }

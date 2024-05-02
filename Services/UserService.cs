@@ -32,39 +32,25 @@ namespace TaskTrackerBackend.Services
             string[] abcArr = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
             Random random = new Random();
 
-            if (random.Next(0, 2)== 0)
-            {
-
-            }
-
-            int firstLetterIndex  = random.Next(0, abcArr.Length);
-
-            string firstLetter = abcArr[firstLetterIndex];
-
             string remainingDigits = "";
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 6; i++)
                 {
                     if (random.Next(0, 2)== 0)
                     {
-                        int i 
-                    }
-                    // remainingDigits += random.Next(0, 10); // Generate random digit between 0 and 9
-                }
-            
-            // string imgID = firstLetter + remainingDigits;
-            //     if (firstLetterIndex < 13)
-            //     {
-            //         // Do something if the first letter is before 'N' in the alphabet
-            //     }
-            //     else
-            //     {
-            //         // Do something else if the first letter is 'N' or after in the alphabet
-            //     }
+                        int digit = random.Next(0, 10); // Generate a random digit from 0 to 9
+                        remainingDigits += digit.ToString();
 
-            return imgID;
+                    }
+                    else {
+                        int digit = random.Next(0, 26);
+                        remainingDigits += abcArr[digit];
+                    }
+                }
+            return remainingDigits;
 
         }
-
+            
+       
 
         public bool CreateUser(CreateAccountDTO UserToAdd)
         {
@@ -77,17 +63,23 @@ namespace TaskTrackerBackend.Services
                 var hashPassword = HashPassword(UserToAdd.Password);
                 
                     newUser.ID = UserToAdd.ID;
-<<<<<<< HEAD
+
+                    newUser.ProfileImg = UserToAdd.ProfileImg;
+
                     newUser.Username = UserToAdd.Username;   
+
+                    
                     newUser.Password = "Cant see it";
-=======
+                    
                     newUser.Username = UserToAdd.Username;
 
->>>>>>> 8f2c2b167812214b2955e951801de21ad0fb8b3b
+
+
+
                     newUser.Salt = hashPassword.Salt;
                     newUser.Hash = hashPassword.Hash;  
                     newUser.AccountCreated = true;
-                    newUser.BoardInfo = new List<BoardModel>();
+                    // newUser.BoardInfo = new List<BoardModel>();
 
                     _context.Add(newUser);
 
@@ -172,10 +164,10 @@ namespace TaskTrackerBackend.Services
             return _context.UserInfo.SingleOrDefault(user => user.Username == username);
         }
 
-        public List<BoardModel> GetBaordById(string BoardID)
-        {
-            return _context.BoardInfo.Where(board => board.BoardID == BoardID).ToList();
-        }
+        // public List<BoardModel> GetBaordById(string BoardID)
+        // {
+        //     return _context.BoardInfo.Where(board => board.BoardID == BoardID).ToList();
+        // }
 
 
         public bool UpdateUser(UserModels userToUpdate)
@@ -183,6 +175,21 @@ namespace TaskTrackerBackend.Services
             _context.Update<UserModels>(userToUpdate);
             return _context.SaveChanges() !=0 ;
         }
+
+        public bool UpdateProfileImg(int id, string profileImg)
+        {   
+            UserModels foundUser = GetUserById(id);
+
+             bool result = false;
+             if(foundUser != null)
+             {
+                foundUser.ProfileImg = profileImg;
+                _context.Update<UserModels>(foundUser);
+                result = _context.SaveChanges() !=0 ;
+             }
+             return result;
+        }
+
 
         public bool UpdateUsername(int id, string username)
         {
@@ -204,10 +211,11 @@ namespace TaskTrackerBackend.Services
             return _context.UserInfo.SingleOrDefault(user => user.ID == id);
         }
 
-        public bool GetImage()
-        {
-            return _context.ImageInfo.Any()
-        }
+        // public bool GetImage()
+        // {
+        //     return _context.ImageInfo.Any()
+        // }
+        
         public bool DeleteUser(string userToDelete)
         {
             // We are only sending over the username

@@ -49,7 +49,6 @@ namespace TaskTrackerBackend.Services
             newPost.AssigneeID = assignee.ID;
             newPost.Status = createdPost.Status;
             newPost.PriorityLevel = createdPost.PriorityLevel;
-            newPost.Comments = new List<CommentsModels>();
             newPost.IsDeleted = false;
 
             _context.Add(newPost);
@@ -62,9 +61,6 @@ namespace TaskTrackerBackend.Services
 
             UserModels foundUser = GetUserByUsername(editedPost.Assignee);
             PostModels foundPost = GetPostByID(editedPost.ID);
-            BoardModel foundBoard = GetBoardModelByID(foundPost.BoardID);
-
-            int index = foundBoard.Posts.IndexOf(foundPost);
 
             foundPost.Title = editedPost.Title;
             foundPost.Description = editedPost.Description;
@@ -72,10 +68,6 @@ namespace TaskTrackerBackend.Services
             foundPost.Status = editedPost.Status;
             foundPost.PriorityLevel = editedPost.PriorityLevel;
 
-
-            foundBoard.Posts[index] = foundPost;
-
-            _context.Update<BoardModel>(foundBoard);
             _context.Update<PostModels>(foundPost);
 
             return _context.SaveChanges() != 0;
@@ -84,14 +76,9 @@ namespace TaskTrackerBackend.Services
         public bool DeletePostById(int id)
         {
             PostModels foundPost = GetPostByID(id);
-            BoardModel foundBoard = GetBoardModelByID(foundPost.BoardID);
-            int index = foundBoard.Posts.IndexOf(foundPost);
-
+            
             foundPost.IsDeleted = true;
 
-            foundBoard.Posts[index] = foundPost;
-
-            _context.Update<BoardModel>(foundBoard);
             _context.Update<PostModels>(foundPost);
             return _context.SaveChanges() != 0;
         }
