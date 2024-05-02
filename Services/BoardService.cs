@@ -87,6 +87,8 @@ namespace TaskTrackerBackend.Services
                 }
             }
 
+            foundUser.BoardIDs += createdBoard.BoardID + "-";
+            _context.Update<UserModels>(foundUser);
             _context.Add(createdBoard);
 
             return _context.SaveChanges() != 0;

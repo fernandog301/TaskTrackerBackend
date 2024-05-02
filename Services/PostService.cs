@@ -49,7 +49,6 @@ namespace TaskTrackerBackend.Services
             newPost.AssigneeID = assignee.ID;
             newPost.Status = createdPost.Status;
             newPost.PriorityLevel = createdPost.PriorityLevel;
-            newPost.Comments = new List<CommentsModels>();
             newPost.IsDeleted = false;
 
             _context.Add(newPost);
@@ -62,7 +61,6 @@ namespace TaskTrackerBackend.Services
 
             UserModels foundUser = GetUserByUsername(editedPost.Assignee);
             PostModels foundPost = GetPostByID(editedPost.ID);
-            BoardModel foundBoard = GetBoardModelByID(foundPost.BoardID);
 
             foundPost.Title = editedPost.Title;
             foundPost.Description = editedPost.Description;

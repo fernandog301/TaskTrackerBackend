@@ -25,23 +25,6 @@ namespace TaskTrackerBackend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserInfo",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AccountCreated = table.Column<bool>(type: "bit", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Salt = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Hash = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserInfo", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "BoardInfo",
                 columns: table => new
                 {
@@ -49,17 +32,11 @@ namespace TaskTrackerBackend.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserID = table.Column<int>(type: "int", nullable: false),
                     BoardName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BoardID = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserModelsID = table.Column<int>(type: "int", nullable: true)
+                    BoardID = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BoardInfo", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_BoardInfo_UserInfo_UserModelsID",
-                        column: x => x.UserModelsID,
-                        principalTable: "UserInfo",
-                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -75,17 +52,30 @@ namespace TaskTrackerBackend.Migrations
                     AssigneeID = table.Column<int>(type: "int", nullable: true),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PriorityLevel = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    BoardModelID = table.Column<int>(type: "int", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PostInfo", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_PostInfo_BoardInfo_BoardModelID",
-                        column: x => x.BoardModelID,
-                        principalTable: "BoardInfo",
-                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserInfo",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BoardIDs = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProfileImg = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AccountCreated = table.Column<bool>(type: "bit", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Salt = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Hash = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserInfo", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -142,11 +132,6 @@ namespace TaskTrackerBackend.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BoardInfo_UserModelsID",
-                table: "BoardInfo",
-                column: "UserModelsID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CommentInfo_PostModelsID",
                 table: "CommentInfo",
                 column: "PostModelsID");
@@ -160,11 +145,6 @@ namespace TaskTrackerBackend.Migrations
                 name: "IX_CommentReplyDTO_CommentsModelsID",
                 table: "CommentReplyDTO",
                 column: "CommentsModelsID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PostInfo_BoardModelID",
-                table: "PostInfo",
-                column: "BoardModelID");
         }
 
         /// <inheritdoc />
@@ -174,19 +154,19 @@ namespace TaskTrackerBackend.Migrations
                 name: "AppInfo");
 
             migrationBuilder.DropTable(
+                name: "BoardInfo");
+
+            migrationBuilder.DropTable(
                 name: "CommentReplyDTO");
+
+            migrationBuilder.DropTable(
+                name: "UserInfo");
 
             migrationBuilder.DropTable(
                 name: "CommentInfo");
 
             migrationBuilder.DropTable(
                 name: "PostInfo");
-
-            migrationBuilder.DropTable(
-                name: "BoardInfo");
-
-            migrationBuilder.DropTable(
-                name: "UserInfo");
         }
     }
 }

@@ -58,12 +58,7 @@ namespace TaskTrackerBackend.Migrations
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserModelsID")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("UserModelsID");
 
                     b.ToTable("BoardInfo");
                 });
@@ -156,9 +151,6 @@ namespace TaskTrackerBackend.Migrations
                     b.Property<string>("BoardID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("BoardModelID")
-                        .HasColumnType("int");
-
                     b.Property<string>("DateCreated")
                         .HasColumnType("nvarchar(max)");
 
@@ -179,8 +171,6 @@ namespace TaskTrackerBackend.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("BoardModelID");
-
                     b.ToTable("PostInfo");
                 });
 
@@ -195,11 +185,17 @@ namespace TaskTrackerBackend.Migrations
                     b.Property<bool?>("AccountCreated")
                         .HasColumnType("bit");
 
+                    b.Property<string>("BoardIDs")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Hash")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfileImg")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Salt")
@@ -212,13 +208,6 @@ namespace TaskTrackerBackend.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("UserInfo");
-                });
-
-            modelBuilder.Entity("TaskTrackerBackend.Models.BoardModel", b =>
-                {
-                    b.HasOne("TaskTrackerBackend.Models.UserModels", null)
-                        .WithMany("BoardInfo")
-                        .HasForeignKey("UserModelsID");
                 });
 
             modelBuilder.Entity("TaskTrackerBackend.Models.CommentsModels", b =>
@@ -239,18 +228,6 @@ namespace TaskTrackerBackend.Migrations
                         .HasForeignKey("CommentsModelsID");
                 });
 
-            modelBuilder.Entity("TaskTrackerBackend.Models.PostModels", b =>
-                {
-                    b.HasOne("TaskTrackerBackend.Models.BoardModel", null)
-                        .WithMany("Posts")
-                        .HasForeignKey("BoardModelID");
-                });
-
-            modelBuilder.Entity("TaskTrackerBackend.Models.BoardModel", b =>
-                {
-                    b.Navigation("Posts");
-                });
-
             modelBuilder.Entity("TaskTrackerBackend.Models.CommentsModels", b =>
                 {
                     b.Navigation("Replies");
@@ -264,11 +241,6 @@ namespace TaskTrackerBackend.Migrations
             modelBuilder.Entity("TaskTrackerBackend.Models.PostModels", b =>
                 {
                     b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("TaskTrackerBackend.Models.UserModels", b =>
-                {
-                    b.Navigation("BoardInfo");
                 });
 #pragma warning restore 612, 618
         }
