@@ -52,7 +52,7 @@ namespace TaskTrackerBackend.Services
             newPost.Comments = new List<CommentsModels>();
             newPost.IsDeleted = false;
 
-            foundBoard.Posts.Add(newPost);
+            _context.Add(newPost);
 
             return _context.SaveChanges() != 0;
         }
