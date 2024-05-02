@@ -10,6 +10,7 @@ namespace TaskTrackerBackend.Models.DTO
         public int ID { get; set; }
         public string Username { get; set; }
 
+        public string ProfileImg { get; set; }
         public string Password { get; set; }
         
     }

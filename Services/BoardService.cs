@@ -26,13 +26,13 @@ namespace TaskTrackerBackend.Services
             return _context.BoardInfo.SingleOrDefault(board => board.ID == id);
         }
 
-        public bool AddBoardToUser(int id, string username){
-            UserModels foundUser = GetUserByUsername(username);
-            BoardModel board = new BoardModel();
-            foundUser.BoardInfo.Add(board);
-            _context.Update<UserModels>(foundUser);
-            return _context.SaveChanges() != 0;
-        }
+        // public bool AddBoardToUser(int id, string username){
+        //     UserModels foundUser = GetUserByUsername(username);
+        //     BoardModel board = new BoardModel();
+        //     foundUser.BoardInfo.Add(board);
+        //     _context.Update<UserModels>(foundUser);
+        //     return _context.SaveChanges() != 0;
+        // }
 
         public string CreateBoardID()
         {

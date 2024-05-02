@@ -37,11 +37,11 @@ namespace TaskTrackerBackend.Controllers
             return _board.CreateBoard(newBoard);
         }
 
-        [HttpPost]
-        [Route("AddBoardToUser/{id}/{username}")]
-        public bool AddBoardToUser(int id, string username){
-            return _board.AddBoardToUser(id, username);
-        }
+        // [HttpPost]
+        // [Route("AddBoardToUser/{id}/{username}")]
+        // public bool AddBoardToUser(int id, string username){
+        //     return _board.AddBoardToUser(id, username);
+        // }
 
 
     }
