@@ -31,10 +31,20 @@ namespace TaskTrackerBackend.Controllers
             return _board.CreateBoard(newBoard);
         }
 
+<<<<<<< HEAD
         [HttpPut]
         [Route("AddBoardToUser/{id}/{username}")]
         public bool AddBoardToUser(string id, string username){
             return _board.AddBoardToUser(id, username);
         }
+=======
+        // [HttpPost]
+        // [Route("AddBoardToUser/{id}/{username}")]
+        // public bool AddBoardToUser(int id, string username){
+        //     return _board.AddBoardToUser(id, username);
+        // }
+
+
+>>>>>>> f1a5b172a510a8592b9a248d1cd3f327c0f5955c
     }
 }
