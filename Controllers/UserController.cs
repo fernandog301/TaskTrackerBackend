@@ -56,6 +56,20 @@ namespace TaskTrackerBackend.Controllers
         }
 
 
+        [HttpGet]
+        [Route("GenerateImgID")]
+        public string GenerateImgID()
+        {
+            return _data.GenerateImgID();
+        }
+
+        [HttpGet]
+        [Route("GetUserByUsername")]
+        public UserModels GetUserByUsername(string username)
+        {
+            return _data.GetUserByUsername(username);
+        }
+
 
 
 
