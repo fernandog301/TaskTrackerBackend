@@ -32,6 +32,7 @@ namespace TaskTrackerBackend.Controllers
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         [HttpPut]
         [Route("AddBoardToUser/{id}/{username}")]
         public bool AddBoardToUser(string id, string username){
@@ -43,6 +44,13 @@ namespace TaskTrackerBackend.Controllers
         // public bool AddBoardToUser(int id, string username){
         //     return _board.AddBoardToUser(id, username);
         // }
+=======
+        [HttpPost]
+        [Route("AddBoardToUser/{id}/{username}")]
+        public bool AddBoardToUser(int id, string username){
+            return _board.AddBoardToUser(id, username);
+        }
+>>>>>>> 65218eb263f7fa8069a091c388222f8090547920
 
 
 >>>>>>> f1a5b172a510a8592b9a248d1cd3f327c0f5955c
